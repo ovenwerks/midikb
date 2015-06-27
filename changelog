@@ -7,6 +7,7 @@ midikb (0.1.2) UNRELEASED; urgency=medium
   * Catch some more signals so jack can be shut down cleanly.
   * Turn all LEDs off at startup.
   * Get rid of build warnings.
+  * Started to use Git and export to github.
 
  -- Len Ovens <len@music>  Sat, 27 Jun 2015 06:56:49 -0700
 
