@@ -1,0 +1,10 @@
+0.1.1:
+	* Release 0.1.1
+	* Forked from actkbd to midikb
+	* reversioned to 0.1.1
+	* Added -g --grab CL parameter to start grabbed
+	* Added create jack midi ports (in and out)
+	* Added transport actions start, stop, forward rew and zero
+	* Added midi event send
+	* Added pitch bend fader send and receive
+	* Added cc send and receive

@@ -1,0 +1,25 @@
+midikb (0.1.2) UNRELEASED; urgency=medium
+
+  * Merged README files to one midikb file
+  * Using debian style change log for ease of use
+  * Remove device scan as it is most likey the wrong device.
+  * Cleaned up warnings in linux.c
+  * Catch some more signals so jack can be shut down cleanly.
+  * Turn all LEDs off at startup.
+  * Get rid of build warnings.
+
+ -- Len Ovens <len@music>  Sat, 27 Jun 2015 06:56:49 -0700
+
+midikb (0.1.1) RELEASED; urgency=medium
+
+  * Release 0.1.1
+  * Forked from actkbd to midikb
+  * reversioned from 0.2.8 to 0.1.1
+  * Added -g --grab CL parameter to start grabbed
+  * Added create jack midi ports (in and out)
+  * Added transport actions start, stop, forward rew and zero
+  * Added midi event send
+  * Added pitch bend fader send and receive
+  * Added cc send and receive
+
+ -- Len Ovens <len@music>  Sat Apr 18 2015 08:54:00 -0700
