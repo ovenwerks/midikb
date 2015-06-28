@@ -1,0 +1,9 @@
+# files we don't want git to play with
+*~
+samples/*~
+midikb.geany
+*.o
+midikb
+debian
+debian/*
+

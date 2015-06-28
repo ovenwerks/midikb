@@ -1,3 +1,14 @@
+0.1.2:
+  * Merged README files to one midikb file
+  * Using debian style change log for ease of use
+  * Remove device scan as it is most likey the wrong device.
+  * Cleaned up warnings in linux.c
+  * Catch some more signals so jack can be shut down cleanly.
+  * Turn all LEDs off at startup.
+  * Get rid of build warnings.
+  * Started to use Git and export to github.
+  * Added WiiMote config file and map to work with Ardour.
+
 0.1.1:
 	* Release 0.1.1
 	* Forked from actkbd to midikb
