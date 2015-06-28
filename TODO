@@ -9,7 +9,6 @@ TODO list for midikbd:
 	* Make flashing available (9 LED states instead of 6)
  	* so we can remove delay from read loop.
  - add *.desktop file
- - clean up directory of old actkbd stuff.
  - add GUI to edit config...
  - deal with modifier keys so that two can be used at once (like shift/ctl/something)
 	* This is working right now so long as ctl and shift are hit in the right order

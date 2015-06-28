@@ -1,1 +1,2 @@
 KERNEL=="event*", GROUP="input", MODE="0660"
+KERNEL=="js*", GROUP="input", MODE="0660"
