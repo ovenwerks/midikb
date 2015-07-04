@@ -297,10 +297,6 @@ int main(int argc, char **argv) {
     if ((ret = init_dev()) != OK)
 	return ret;
 
-    /* open as a jack client */
-    if ((ret = jackconnect()) != OK)
-	return ret;
-
     /* Process the configuration file */
     if ((ret = open_config()) != OK)
 	return ret;
@@ -353,6 +349,9 @@ int main(int argc, char **argv) {
 	set_led(1, 0);
 	set_led(2, 0);
 
+    /* open as a jack client */
+    if ((ret = jackconnect()) != OK)
+	return ret;
 
     while (get_key(&key, &type) == OK) {
 	int tmp, exec_ok = 0, norel = 0;
@@ -535,6 +534,11 @@ int main(int argc, char **argv) {
         }
 
     }
+    /* jack client needs to quit properly as this is where we end
+     * up if the device gets unplugged or if blue tooth gets out
+     * of range.
+     */
+    jackclose();     
 
     return OK;
 }
