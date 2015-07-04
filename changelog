@@ -1,9 +1,9 @@
-midikb (0.1.3) UNRELEASED; urgency=medium
+midikb (0.1.3) Released; urgency=medium
 
   * Moved Jack initialize to after anything that might fail.
   * Added jack close at end of main to catch device vanishing.
 
- -- Len Ovens <len@music>  Sat, 04 Jul 2015 07:20:32 -0700
+ -- Len Ovens <len@music>  Sat, 04 Jul 2015 08:44:09 -0700
 
 midikb (0.1.2) Released; urgency=medium
 
