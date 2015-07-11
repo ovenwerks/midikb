@@ -3,14 +3,15 @@ TODO list for midikbd:
  - Better documentation.
  - Wait for device if not present.
  - wait for jack if not present.
- - add device and other startup options to config file.
- - non-blocking device read:
+ - Add device and other startup options to config file.
+ - Non-blocking device read:
 	* to make LEDs work if other end changes their state
 	* Make flashing available (9 LED states instead of 6)
  	* so we can remove delay from read loop.
- - add *.desktop file
- - add GUI to edit config...
- - deal with modifier keys so that two can be used at once (like shift/ctl/something)
+ - Add *.desktop file... this would require a gui first so that the user can
+ 	see midikb is running
+ - Add GUI to edit config...
+ - Deal with modifier keys so that two can be used at once (like shift/ctl/something)
 	* This is working right now so long as ctl and shift are hit in the right order
 	* It would be nice to save modifier state so there is never a resend and only
 		the new key is sent.

@@ -11,3 +11,5 @@ can increment or decrement the memory as well.
 
 There are included example configuration files to let an computer keyboard emulate a 5 channel mackie
 surface or extension and to use a WiiMote for remote control.
+
+The file INSTALL has all the documentation there is at this time.

@@ -212,7 +212,8 @@ NOTE: for MIDI use this will generally not be used but midikb will be started in
 	grab mode from the command line.
 
 * `noexec': Do not call system() to run an external command. Useful for entries
-	that only serve configuration purposes.
+	that only serve configuration purposes. Jack related commands set
+	noexec because the command has to be jack specific.
 
 * `exec': Use system() to run an external command here and now. Allows specific
 	ordering of the attribute actions with regard to the system() call.
@@ -220,6 +221,7 @@ NOTE: for MIDI use this will generally not be used but midikb will be started in
 NOTE: If none of the `noexec'/`exec' attributes has been specified, or if the
 	attribute list is empty, an `exec' call is implied at the end of the
 	list. Always use `noexec' for entries with empty/invalid commands.
+	If any of the jack commands are used, noexec is already enforced.
 
 * `jackt': is the jack transport attribute It means the command will be sent
 	to jacks transport section. The commands that go with this are:
@@ -233,11 +235,6 @@ NOTE: If none of the `noexec'/`exec' attributes has been specified, or if the
 	Back or B move back 10 sec (at 48000) 
 	example: 96:key:jackt:roll makes jacktransport start rolling with numpad enter.
 	Note: the application(s) must be setup to use jack transport.
-
-Note: in both fader and control, the fader/controller number is the midi 
-two digit hex number and the offset is a decimal number. This is for
-convenience as the fader numbers are all listed in my documentation as
-hex and offsets make sense in decimal (to me).
 	
 * `fader': This assigns the command to increment/decrement one of 16 memories
 	as pitch bend. This is what the MCP surfaces use for faders. The associated
@@ -271,6 +268,10 @@ hex and offsets make sense in decimal (to me).
 	23:rep:control:13 -1
 	The actual MIDI event would be B0 13 [memvalue 0-7f]
 
+Note: in both fader and control, the fader/controller number is the midi 
+two digit hex number and the offset is a decimal number. This is for
+convenience as the fader numbers are all listed in my documentation as
+hex and offsets make sense in decimal (to me).
 	
 * `jackm': These are jack midi events. Singles events are expected, So
 	multi-event commands like NRPNs will not work. Short sysexe events are OK.
@@ -375,6 +376,47 @@ NOTE: You will have to use some other way to find what LED codes your keyboard
 	supports. On Linux the /proc/bus/input/devices file can supply this
 	information: the LED= field is a bitwise mask of the present LEDs. For
 	example, if it's 7 (binary: 111), all first three LEDs are available.
+
+
+3.3.2. MIDI Modifiers
+
+Some software allows the use of some MIDI events as modifier keys. This is
+true with software designed to work with the "Mackie Control Protocol" which
+has 4 modifier keys. midikb can emulate this as well with careful use of the
+'any' attribute and careful ordering of the config file. The mcp.conf file
+in the samples directory uses this and even allows double modifier use if
+done right. Because midikb prioritizes commands from top of the
+configuration to the bottom, the modifier keys must be the last lines in the
+file so that the modified keypress does not resend the modifier key press.
+
+The expected set of MIDI events for modifier key use is:
+	- modifier key sends modifier noteon event
+	- modified key sends noteon event
+	- modified key sends noteoff event
+	- modifier key sends noteoff event
+
+So in the config file, the lines would be like this:
+
+1:key:any,jackm:90 36 7f
+1:rel:any,jackm:90 36 00
+... lots more ...
+
+#modifier keys
+
+# left shift - Shift (suprise!)
+42:key:any,jackm:90 46 7f
+42:rel:any,jackm:90 46 00
+# left ctrl - Control
+29:key:jackm:90 48 7f
+29:rel:jackm:90 48 00
+
+To use a double modifier such as control/shift/note, the keys must be
+pressed in the right order from bottom to top. That is control, shift and
+then note. They should also be released in the reverse order or the control
+key release/noteoff event may never be sent. This seems fussy, but I have
+found it easy to train my modifier fingers to do things right. Making the
+modifier release order not matter is on the TODO list in any case.
+
 
 
 3.4. Running
