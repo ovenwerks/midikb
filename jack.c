@@ -124,8 +124,8 @@ int jackconnect(void)
 
     jack_set_process_callback (client, process, 0);
 
-    output_port = jack_port_register (client, "out", JACK_DEFAULT_MIDI_TYPE, JackPortIsOutput, 0);
-    input_port = jack_port_register (client, "in", JACK_DEFAULT_MIDI_TYPE, JackPortIsInput, 0);
+    output_port = jack_port_register (client, "out", JACK_DEFAULT_MIDI_TYPE, (JackPortIsOutput | JackPortIsTerminal), 0);
+    input_port = jack_port_register (client, "in", JACK_DEFAULT_MIDI_TYPE, (JackPortIsInput | JackPortIsTerminal), 0);
 
     if (jack_activate(client))
         {
