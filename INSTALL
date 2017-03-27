@@ -102,6 +102,9 @@ explicitly specified (-c) in the midikb command line options if the default
 ($(sysconfdir)/midikb.conf) location is not valid.  Generally using the
 command line seems to be best as the device has to be specified anyway.
 
+Because of the large variance in the Linux world, make install does not
+install midikb.rules in the udev config directory, or create an input group,
+or put the user into that group. This must be done manually.
 
 3.3. Configuration
 
@@ -420,6 +423,13 @@ modifier release order not matter is on the TODO list in any case.
 
 
 3.4. Running
+
+NOTE: midikb should not be run as root either from a startup script or with
+sudo. Because midikb runs as a jackd client it must run as the same user
+as the jackd server. See the install section above for making the
+/dev/input devices accessable to your jackd user. Hopefully, in future
+releases, midikb will be able to show itself as an ALSA midi device which will
+be able to run in system space.
 
 Run `midikb --help' to see the various command line options.
 
